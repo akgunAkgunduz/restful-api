@@ -1,0 +1,14 @@
+{
+  "name": "restful-api",
+  "version": "1.0.0",
+  "description": "A sample RESTful API build with Express",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server"
+  },
+  "author": "Akgün Akgündüz",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
