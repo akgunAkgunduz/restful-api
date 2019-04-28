@@ -9,5 +9,6 @@ router.route('/')
 
 router.route('/:id')
   .get(userController.getOne)
+  .delete(userController.removeOne)
 
 module.exports = router

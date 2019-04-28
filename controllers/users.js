@@ -19,5 +19,12 @@ module.exports = {
     const user = await newUser.save()
 
     res.status(201).json(user)
+  },
+
+  removeOne: async (req, res) => {
+    const { id } = req.params
+    const user = await User.findOneAndRemove({ _id: id })
+
+    res.status(200).json({ deletedUser: user })
   }
 }
