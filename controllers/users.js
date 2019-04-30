@@ -21,6 +21,14 @@ module.exports = {
     res.status(201).json(user)
   },
 
+  replaceOne: async (req, res) => {
+    const { id } = req.params
+    const incomingUser = { ...req.body }
+    const user = await User.findOneAndUpdate({ _id: id }, incomingUser, { new: true })
+
+    res.status(200).json({ replacedUser: user })
+  },
+
   removeOne: async (req, res) => {
     const { id } = req.params
     const user = await User.findOneAndRemove({ _id: id })
