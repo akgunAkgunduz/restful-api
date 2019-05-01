@@ -10,6 +10,7 @@ router.route('/')
 router.route('/:id')
   .get(userController.getOne)
   .put(userController.replaceOne)
+  .patch(userController.updateOne)
   .delete(userController.removeOne)
 
 module.exports = router
