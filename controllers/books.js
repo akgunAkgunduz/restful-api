@@ -19,5 +19,12 @@ module.exports = {
     const book = await newBook.save()
 
     res.status(201).json(book)
+  },
+
+  removeOne: async (req, res) => {
+    const { id } = req.params
+    const book = await Book.findOneAndRemove({ _id: id })
+
+    res.status(200).json({ deletedBook: book })
   }
 }
