@@ -21,6 +21,22 @@ module.exports = {
     res.status(201).json(book)
   },
 
+  replaceOne: async (req, res) => {
+    const { id } = req.params
+    const incomingBook = { ...req.body }
+    const book = await Book.findOneAndUpdate({ _id: id }, incomingBook, { new: true })
+
+    res.status(200).json({ replacedBook: book })
+  },
+
+  updateOne: async (req, res) => {
+    const { id } = req.params
+    const incomingFields = { ...req.body }
+    const book = await Book.findOneAndUpdate({ _id: id }, incomingFields, { new: true })
+
+    res.status(200).json({ updatedBook: book })
+  },
+
   removeOne: async (req, res) => {
     const { id } = req.params
     const book = await Book.findOneAndRemove({ _id: id })
