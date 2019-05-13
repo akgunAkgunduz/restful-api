@@ -1,4 +1,5 @@
 const User = require('../models/user')
+const Book = require('../models/book')
 
 module.exports = {
   getAll: async (req, res) => {
@@ -42,5 +43,27 @@ module.exports = {
     const user = await User.findOneAndRemove({ _id: id })
 
     res.status(200).json({ deletedUser: user })
+  },
+
+  getFavoriteBooks: async (req, res) => {
+    const { id } = req.params
+    const user = await User.findById(id).populate('favoriteBooks')
+
+    res.status(200).json(user.favoriteBooks)
+  },
+
+  addFavoriteBook: async (req, res) => {
+    const { id } = req.params
+    const user = await User.findOne({ _id: id })
+
+    const { bookId } = req.body
+
+    const book = await Book.findOne({ _id: bookId })
+    if (!book) throw new Error('No such book on DB!')
+
+    user.favoriteBooks.push(bookId)
+    await user.save()
+
+    res.status(201).json(user)
   }
 }

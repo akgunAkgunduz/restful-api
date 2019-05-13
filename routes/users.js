@@ -13,4 +13,8 @@ router.route('/:id')
   .patch(userController.updateOne)
   .delete(userController.removeOne)
 
+router.route('/:id/books')
+  .get(userController.getFavoriteBooks)
+  .post(userController.addFavoriteBook)
+
 module.exports = router
